@@ -33,7 +33,7 @@ export default function App() {
 }
   return (
     <View style={styles.container}>
-      <Text>Carregar Dado do Servidor</Text>
+      <Text>Carregar Dados do Servidor</Text>
       {
         data?.map(item => {
           return (
