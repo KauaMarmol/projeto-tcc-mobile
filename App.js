@@ -1,58 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import WelcomeScreen from './screens/WelcomeScreen';
+import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import HomeScreen from './screens/HomeScreen';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [data, setData] = useState([]);
-  /* const API_URL = "https://curly-space-trout-4vjgjx6qwq5hqp66-3000.app.github.dev" */
-  /* const API_URL = "http://localhost:3000" */
-
-  const fetchData = async () => {
-    const ENDPOINT = "/api/user"
-    const API_URL = "https://curly-space-trout-4vjgjx6qwq5hqp66-3000.app.github.dev"
-    const response = await fetch(API_URL + ENDPOINT);
-    const json = await response.json();
-    setData(json);
-  }
-
-  const postData = async () => {
-    const ENDPOINT = "/api/user";
-    const body = {
-      username: "usuario1",
-      email: "usuario1@teste.com.br"
-    }
-    const response = await fetch(API_URL + ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
-  });
-  const json = await respone.json();
-  console.log(json);
-}
   return (
-    <View style={styles.container}>
-      <Text>Carregar Dados do Servidor</Text>
-      {
-        data?.map(item => {
-          return (
-            <Text key={item.id}>{item.username}</Text>
-          )
-        })
-      }
-      <Button title="Carregar Dados" onPress={fetchData}/>
-      <Button title="Enviar Dados" onPress={postData} />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Welcome" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
