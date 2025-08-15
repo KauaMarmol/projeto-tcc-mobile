@@ -6,8 +6,7 @@ export default function WelcomeScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>Bem-vindo(a)</Text>
       <Image source={require('../assets/Logo.png')} style={styles.logo} />
-      <Image source={{ uri: 'https://i.imgur.com/AVf5VJl.jpg' }} style={styles.image} />
-      <Image source={{ uri: 'https://i.imgur.com/ZkJgkzb.jpg' }} style={styles.image} />
+      
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
         <Text style={styles.buttonText}>Vamos começar</Text>
       </TouchableOpacity>
