@@ -13,7 +13,7 @@ export default function LoginScreen({ navigation }) {
       <TextInput style={styles.input} value={nome} onChangeText={setNome} />
       <Text style={styles.label}>SENHA</Text>
       <TextInput style={styles.input} value={senha} onChangeText={setSenha} secureTextEntry />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.buttonText}>Log in</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => {}}>
