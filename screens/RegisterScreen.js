@@ -7,21 +7,51 @@ export default function RegisterScreen({ navigation }) {
   const [senha, setSenha] = useState('');
   const [dataNascimento, setDataNascimento] = useState('');
 
+  const handleDateChange = (text) => {
+    // Remove tudo que não for número
+    let cleaned = text.replace(/\D/g, '');
+
+    // Limita a 8 dígitos (ddMMyyyy)
+    if (cleaned.length > 8) cleaned = cleaned.slice(0, 8);
+
+    // Adiciona as barras automaticamente
+    if (cleaned.length > 4) {
+      cleaned = cleaned.replace(/(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
+    } else if (cleaned.length > 2) {
+      cleaned = cleaned.replace(/(\d{2})(\d{1,2})/, '$1/$2');
+    }
+
+    setDataNascimento(cleaned);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>GrowSync</Text>
       <Text style={styles.title}>Criar conta</Text>
+
       <Text style={styles.label}>NOME</Text>
       <TextInput style={styles.input} value={nome} onChangeText={setNome} />
+
       <Text style={styles.label}>EMAIL</Text>
       <TextInput style={styles.input} value={email} onChangeText={setEmail} />
+
       <Text style={styles.label}>SENHA</Text>
       <TextInput style={styles.input} value={senha} onChangeText={setSenha} secureTextEntry />
+
       <Text style={styles.label}>DATA DE NASCIMENTO</Text>
-      <TextInput style={styles.input} value={dataNascimento} onChangeText={setDataNascimento} placeholder="Selecionar" />
+      <TextInput
+        style={styles.input}
+        value={dataNascimento}
+        onChangeText={handleDateChange}
+        placeholder="dd/mm/yyyy"
+        keyboardType="numeric"
+        maxLength={10}
+      />
+
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Criar conta</Text>
       </TouchableOpacity>
+
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text style={styles.link}>Entrar</Text>
       </TouchableOpacity>
