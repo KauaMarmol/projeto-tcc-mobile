@@ -15,7 +15,7 @@ export default function App() {
   const [data, setData] = useState([]);
 
   const fetchData = async () => {
-    const API = "http://192.168.100.109:3000/api"; //substituir o ip pelo ip do ipconfig do backend
+    const API = "http://192.170.0.129:3000/api"; //substituir o ip pelo ip do ipconfig do backend
     const URL = `${API}/user`;
     console.log(URL);
     setLoading(true);
